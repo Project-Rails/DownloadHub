@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+    <body onload="loadXMLDoc()">
+
+    <img src="logo.png">
+    
+    <h2>Download ProjectRails</h2>
+
+    <div>
+        ProjectRails-Vanilla b<span id="number1">ERROR</span>
+        <a href="https://ci.appveyor.com/project/IsaiahPatton/projectrails-mirror/build/artifacts"><img src="downloadbtn2.png" width="8%" height="30px"></a>
+        <img src="https://ci.appveyor.com/api/projects/status/kyyec15kp2qj8wu9/branch/master?svg=true">
+        Last updated: <span id="date1">Error</span>
+    </div>
+
+    <script>
+        function loadXMLDoc() {
+            loadXML("number1", "https://ci.appveyor.com/api/projects/IsaiahPatton/projectrails-mirror");
+        }
+
+        function loadXML(element, url) {
+            var xhttp = new XMLHttpRequest();
+            xhttp.onreadystatechange = function() {
+                if (this.readyState == 4 && this.status == 200) {
+                    var xString = "{" + this.responseText.substring(11 + 1542, this.responseText.length - 1) + "}";
+                    var myObj = JSON.parse(xString);
+                    document.getElementById("number1").innerHTML = myObj.build.buildNumber;
+                    myObj.build.finished = new Date(myObj.build.finished);
+                    var hours = myObj.build.finished.getHours();
+                    var min = myObj.build.finished.getMinutes();
+                    var isPm = hours > 11;
+                    var am = "AM";
+                    if (isPm) {
+                        am = "PM";
+                        if (hours > 12) {
+                            hours = hours - 12;
+                        }
+                    }
+                    if (min < 9) {
+                        min = "0" + min;
+                    }
+                    document.getElementById("date1").innerHTML = myObj.build.finished.toDateString() + " " + hours + ":" + min + " " + am;
+                }
+            };
+            xhttp.open("GET", url, true);
+            xhttp.send();
+        }
+        </script>
+    </body>
+</html>
