@@ -2,29 +2,153 @@
 <html>
     <body onload="loadXMLDoc()">
 
-    <img src="logo.png">
-    
-    <h2>Download ProjectRails</h2>
+    <img src="logo-with-text.png">
 
-    <div>
-        ProjectRails-Vanilla b<span id="number1">ERROR</span>
-        <a href="https://ci.appveyor.com/project/IsaiahPatton/projectrails-mirror/build/artifacts"><img src="downloadbtn2.png" width="8%" height="30px"></a>
-        <img src="https://ci.appveyor.com/api/projects/status/kyyec15kp2qj8wu9/branch/master?svg=true">
-        Last updated: <span id="date1">Error</span>
-    </div>
+    <style>
+        * {
+            text-align: center;
+            margin-left:auto; 
+            margin-right:auto;
+        }
+        html {
+            background-image: URL("https://cdn.pixabay.com/photo/2017/01/11/04/57/minecraft-1970876_960_720.jpg");
+            background-repeat: no-repeat;
+            background-size: 101% 110%;
+        }
+        body {
+            background-color:rgba(1,1,1,0.3);
+            color: white;
+            max-width: 85%;
+            min-width:450px;
+            max-height: 95%;
+            margin: 20px auto 0px auto;
+            padding: 10px 20px 1px 20px;
+            direction: ltr;
+        }
+        a {
+            background-color: #2c2e30;
+            border: 2px solid #252728;
+            border-radius: 4px;
+            color: white;
+            padding-top: 5px;
+            padding-bottom: 5px;
+            padding-left: 10px;
+            padding-right: 10px;
+            text-decoration: none;
+        }
+        div,table {
+            font-size: 24px;
+            margin: 35px;
+            margin-left:auto; 
+            margin-right:auto;
+        }
+        table {
+            font-family: arial, sans-serif;
+            border-collapse: collapse;
+            width: 75%;
+            margin-left:auto; 
+            margin-right:auto;
+        }
+
+        td, th {
+            border: 1px solid transparent;
+            text-align: left;
+            padding: 8px;
+            padding-bottom: 50px;
+        }
+        
+        tr:nth-child(even) {
+            background-color: transparent;
+        }
+        p {
+            font-size: 18px;
+            padding: 0;
+            margin: 0;
+            margin-top: -22px;
+        }
+        .color {
+            font-size: 24px;
+            padding-left: 10px;
+            padding-right: 10px;
+            margin: 5px;
+            padding-bottom: 2px;
+            margin-bottom: 10px;
+            color: white;
+        }
+        .betafix {
+            padding-bottom: -8px;
+            margin-bottom: -8px;
+        }
+        
+        .green {
+            background-color: green;
+        }
+        .blue {
+            background-color: blue;
+        }
+        .gold {
+            background-color: gold;
+        }
+        .beta {
+            background-color: red;
+            height: 10px;
+            width: 2px;
+        }
+        .warn {
+            margin-right: 5px;
+        }
+        .rec {
+            background-color: #e542f4;
+        }
+    </style>
+    
+    <table>
+        <tr>
+            <th></th>
+            <th></th>
+            <th>Last updated</th>
+        </tr>
+        <tr>
+            <td>ProjectRails<span class="color green">Vanilla</span>
+            <img src="rec.png" class="betafix" height="18px" width="100px"><br>
+            <img src="https://ci.appveyor.com/api/projects/status/kyyec15kp2qj8wu9/branch/master?svg=true" height="18px" width="85px">
+            <p>b<span id="number1">Error</span></p></td>
+            <td><a href="https://ci.appveyor.com/project/ProjectRailsDevs/projectrails/build/artifacts">Download</a></td>
+            <td id="date1"></th>
+        </tr>
+        <tr>
+            <td>ProjectRails<span class="color blue">Bukkit</span>
+            <img src="beta.png" class="betafix" height="18px" width="54px"><br>
+            <img src="https://ci.appveyor.com/api/projects/status/kyyec15kp2qj8wu9/branch/master?svg=true" height="18px" width="85px">
+            <p>b<span id="number2">Error</span></p></td>
+            <td><a href="https://ci.appveyor.com/project/ProjectRailsDevs/projectrails/build/artifacts">Download</a></td>
+            <td id="date2"></td>
+        </tr>
+        <tr>
+            <td>ProjectRails<span class="color gold">Forge</span>
+            <img src="beta.png" class="betafix" height="18px" width="54px"><br>
+            <img src="https://ci.appveyor.com/api/projects/status/kyyec15kp2qj8wu9/branch/master?svg=true" height="18px" width="85px">
+            <p>b<span id="number1">Error</span></p></td>
+            <td><a href="https://ci.appveyor.com/project/ProjectRailsDevs/projectrails/build/artifacts">Download</a></td>
+            <td id="date3">Never</th>
+        </tr>
+    </table>
 
     <script>
         function loadXMLDoc() {
-            loadXML("number1", "https://ci.appveyor.com/api/projects/IsaiahPatton/projectrails-mirror");
+            loadXML("1", "https://ci.appveyor.com/api/projects/ProjectRailsDevs/projectrails");
+            loadXML("2", "https://ci.appveyor.com/api/projects/ProjectRailsDevs/projectrails-bukkit");
+            loadXML("3", "https://ci.appveyor.com/api/projects/ProjectRailsDevs/projectrails-forge");
         }
 
-        function loadXML(element, url) {
+        function loadXML(id, url) {
             var xhttp = new XMLHttpRequest();
             xhttp.onreadystatechange = function() {
                 if (this.readyState == 4 && this.status == 200) {
-                    var xString = "{" + this.responseText.substring(11 + 1542, this.responseText.length - 1) + "}";
+ 
+                    var xString = "{" + this.responseText.substring(this.responseText.indexOf("\"build\":")/*11 + 1542*/, this.responseText.length - 1) + "}";
                     var myObj = JSON.parse(xString);
-                    document.getElementById("number1").innerHTML = myObj.build.buildNumber;
+                    document.getElementById("number" + id).innerHTML = myObj.build.buildNumber;
                     myObj.build.finished = new Date(myObj.build.finished);
                     var hours = myObj.build.finished.getHours();
                     var min = myObj.build.finished.getMinutes();
@@ -39,7 +163,7 @@
                     if (min < 9) {
                         min = "0" + min;
                     }
-                    document.getElementById("date1").innerHTML = myObj.build.finished.toDateString() + " " + hours + ":" + min + " " + am;
+                    document.getElementById("date" + id).innerHTML = myObj.build.finished.toDateString() + " " + hours + ":" + min + " " + am;
                 }
             };
             xhttp.open("GET", url, true);
