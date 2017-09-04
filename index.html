@@ -4,6 +4,7 @@
 
     <img src="logo-with-text.png">
 
+    <!--Minecraft.jpg:from-pixabay-->
     <style>
         * {
             text-align: center;
@@ -11,9 +12,9 @@
             margin-right:auto;
         }
         html {
-            background-image: URL("https://cdn.pixabay.com/photo/2017/01/11/04/57/minecraft-1970876_960_720.jpg");
+            background-image: URL("minecraft.jpg");
             background-repeat: no-repeat;
-            background-size: 101% 110%;
+            background-size: cover;
         }
         body {
             background-color:rgba(1,1,1,0.3);
@@ -35,6 +36,9 @@
             padding-left: 10px;
             padding-right: 10px;
             text-decoration: none;
+        }
+        a:hover {
+            box-shadow: 0px 2px 0px rgba(1,1,1,0.1);
         }
         div,table {
             font-size: 24px;
@@ -100,6 +104,10 @@
         .rec {
             background-color: #e542f4;
         }
+        th {
+            margin: 2px;
+            padding: 2px;
+        }
     </style>
     
     <table>
@@ -119,17 +127,18 @@
         <tr>
             <td>ProjectRails<span class="color blue">Bukkit</span>
             <img src="beta.png" class="betafix" height="18px" width="54px"><br>
-            <img src="https://ci.appveyor.com/api/projects/status/kyyec15kp2qj8wu9/branch/master?svg=true" height="18px" width="85px">
+            <img src="https://ci.appveyor.com/api/projects/status/fpbydor8w3b6oyuc/branch/master?svg=true" height="18px" width="85px">
             <p>b<span id="number2">Error</span></p></td>
-            <td><a href="https://ci.appveyor.com/project/ProjectRailsDevs/projectrails/build/artifacts">Download</a></td>
+            <td><a href="https://ci.appveyor.com/project/ProjectRailsDevs/projectrails-bukkit/build/artifacts">Download</a></td>
             <td id="date2"></td>
         </tr>
         <tr>
             <td>ProjectRails<span class="color gold">Forge</span>
             <img src="beta.png" class="betafix" height="18px" width="54px"><br>
-            <img src="https://ci.appveyor.com/api/projects/status/kyyec15kp2qj8wu9/branch/master?svg=true" height="18px" width="85px">
+            <img src="https://ci.appveyor.com/api/projects/status/0wjp7ty27o4861rf/branch/master?svg=true
+" height="18px" width="85px">
             <p>b<span id="number1">Error</span></p></td>
-            <td><a href="https://ci.appveyor.com/project/ProjectRailsDevs/projectrails/build/artifacts">Download</a></td>
+            <td><a href="https://ci.appveyor.com/project/ProjectRailsDevs/projectrails-forge/build/artifacts">Download</a></td>
             <td id="date3">Never</th>
         </tr>
     </table>
